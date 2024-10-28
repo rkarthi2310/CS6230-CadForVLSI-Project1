@@ -180,7 +180,7 @@ module mkFpAdder (Ifc_fpadder);
     endmethod
 endmodule
 
-(* synthesize *)
+//(* synthesize *)
 module mkTb (Empty);
     Ifc_fpadder ifc <- mkFpAdder;
 
