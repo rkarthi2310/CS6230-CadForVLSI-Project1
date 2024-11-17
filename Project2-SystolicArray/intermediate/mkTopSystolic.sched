@@ -1,0 +1,164 @@
+=== Generated schedule for mkTopSystolic ===
+
+Method schedule
+---------------
+Method: set_A_matrix_in
+Ready signal: True
+Conflict-free: set_B_matrix_in, set_s1_or_s2_top, get_matrix_mul_result
+Sequenced before (restricted): set_A_matrix_in
+ 
+Method: set_B_matrix_in
+Ready signal: True
+Conflict-free: set_A_matrix_in, set_s1_or_s2_top, get_matrix_mul_result
+Sequenced before (restricted): set_B_matrix_in
+ 
+Method: set_s1_or_s2_top
+Ready signal: True
+Conflict-free: set_A_matrix_in, set_B_matrix_in, get_matrix_mul_result
+Sequenced before (restricted): set_s1_or_s2_top
+ 
+Method: get_matrix_mul_result
+Ready signal: True
+Conflict-free: set_A_matrix_in,
+	       set_B_matrix_in,
+	       set_s1_or_s2_top,
+	       get_matrix_mul_result
+ 
+Rule schedule
+-------------
+Rule: b_row3
+Predicate: systolic_unit.RDY_initialise_systolic &&
+	   systolic_unit.RDY_set_B_matrix &&
+	   (counter == 32'd1)
+Blocking rules: (none)
+ 
+Rule: b_row2
+Predicate: systolic_unit.RDY_set_B_matrix && (counter == 32'd2)
+Blocking rules: (none)
+ 
+Rule: b_row1
+Predicate: systolic_unit.RDY_set_B_matrix && (counter == 32'd3)
+Blocking rules: (none)
+ 
+Rule: b_row0
+Predicate: systolic_unit.RDY_set_B_matrix && (counter == 32'd4)
+Blocking rules: (none)
+ 
+Rule: a_column0
+Predicate: systolic_unit.RDY_set_A_matrix && (counter == 32'd4)
+Blocking rules: (none)
+ 
+Rule: a_column1
+Predicate: systolic_unit.RDY_set_s1_or_s2_row1 &&
+	   systolic_unit.RDY_set_C_row1 && systolic_unit.RDY_set_A_matrix &&
+	   (counter == 32'd6)
+Blocking rules: (none)
+ 
+Rule: a_column2
+Predicate: systolic_unit.RDY_set_s1_or_s2_row1 &&
+	   systolic_unit.RDY_set_C_row1 && systolic_unit.RDY_set_A_matrix &&
+	   (counter == 32'd8)
+Blocking rules: (none)
+ 
+Rule: a_column3
+Predicate: systolic_unit.RDY_set_s1_or_s2_row1 &&
+	   systolic_unit.RDY_set_C_row1 && systolic_unit.RDY_set_A_matrix &&
+	   (counter == 32'd10)
+Blocking rules: (none)
+ 
+Rule: a_column4
+Predicate: systolic_unit.RDY_set_s1_or_s2_row1 &&
+	   systolic_unit.RDY_set_C_row1 && systolic_unit.RDY_set_A_matrix &&
+	   (counter == 32'd12)
+Blocking rules: (none)
+ 
+Rule: a_column5
+Predicate: systolic_unit.RDY_set_s1_or_s2_row1 &&
+	   systolic_unit.RDY_set_C_row1 && systolic_unit.RDY_set_A_matrix &&
+	   (counter == 32'd14)
+Blocking rules: (none)
+ 
+Rule: a_column6
+Predicate: systolic_unit.RDY_set_s1_or_s2_row1 &&
+	   systolic_unit.RDY_set_C_row1 && systolic_unit.RDY_set_A_matrix &&
+	   (counter == 32'd16)
+Blocking rules: (none)
+ 
+Rule: a_dummy1
+Predicate: systolic_unit.RDY_set_s1_or_s2_row1 &&
+	   systolic_unit.RDY_set_C_row1 && systolic_unit.RDY_set_A_matrix &&
+	   (counter == 32'd18)
+Blocking rules: (none)
+ 
+Rule: a_dummy2
+Predicate: systolic_unit.RDY_set_s1_or_s2_row1 &&
+	   systolic_unit.RDY_set_C_row1 && systolic_unit.RDY_set_A_matrix &&
+	   (counter == 32'd20)
+Blocking rules: (none)
+ 
+Rule: a_dummy3
+Predicate: systolic_unit.RDY_set_s1_or_s2_row1 &&
+	   systolic_unit.RDY_set_C_row1 && systolic_unit.RDY_set_A_matrix &&
+	   (counter == 32'd22)
+Blocking rules: (none)
+ 
+Rule: c_column6
+Predicate: systolic_unit.RDY_get_result && (counter == 32'd12)
+Blocking rules: (none)
+ 
+Rule: c_column5
+Predicate: systolic_unit.RDY_get_result && (counter == 32'd14)
+Blocking rules: (none)
+ 
+Rule: c_column4
+Predicate: systolic_unit.RDY_get_result && (counter == 32'd16)
+Blocking rules: (none)
+ 
+Rule: c_column3
+Predicate: systolic_unit.RDY_get_result && (counter == 32'd18)
+Blocking rules: (none)
+ 
+Rule: c_column2
+Predicate: systolic_unit.RDY_get_result && (counter == 32'd20)
+Blocking rules: (none)
+ 
+Rule: c_column1
+Predicate: systolic_unit.RDY_get_result && (counter == 32'd22)
+Blocking rules: (none)
+ 
+Rule: c_column0
+Predicate: systolic_unit.RDY_get_result && (counter == 32'd24)
+Blocking rules: (none)
+ 
+Rule: count_up
+Predicate: True
+Blocking rules: (none)
+ 
+Logical execution order: get_matrix_mul_result,
+			 b_row3,
+			 b_row2,
+			 b_row1,
+			 b_row0,
+			 set_B_matrix_in,
+			 a_column0,
+			 a_column1,
+			 a_column2,
+			 a_column3,
+			 a_column4,
+			 a_column5,
+			 a_column6,
+			 set_A_matrix_in,
+			 a_dummy1,
+			 a_dummy2,
+			 a_dummy3,
+			 set_s1_or_s2_top,
+			 c_column6,
+			 c_column5,
+			 c_column4,
+			 c_column3,
+			 c_column2,
+			 c_column1,
+			 c_column0,
+			 count_up
+
+=============================================

@@ -1,0 +1,239 @@
+=== Generated schedule for mkSystolic ===
+
+Method schedule
+---------------
+Method: set_A_matrix
+Ready signal: systolic_array_0_0.RDY_set_a &&
+	      systolic_array_1_0.RDY_set_a &&
+	      systolic_array_2_0.RDY_set_a && systolic_array_3_0.RDY_set_a
+Conflict-free: set_B_matrix,
+	       set_C_row1,
+	       set_s1_or_s2_row1,
+	       initialise_systolic,
+	       set_state_systolic,
+	       get_result
+Conflicts: set_A_matrix
+ 
+Method: set_B_matrix
+Ready signal: systolic_array_0_0.RDY_set_b &&
+	      systolic_array_0_1.RDY_set_b &&
+	      systolic_array_0_2.RDY_set_b && systolic_array_0_3.RDY_set_b
+Conflict-free: set_A_matrix,
+	       set_C_row1,
+	       set_s1_or_s2_row1,
+	       initialise_systolic,
+	       set_state_systolic,
+	       get_result
+Conflicts: set_B_matrix
+ 
+Method: set_C_row1
+Ready signal: systolic_array_0_0.RDY_set_c &&
+	      systolic_array_0_1.RDY_set_c &&
+	      systolic_array_0_2.RDY_set_c && systolic_array_0_3.RDY_set_c
+Conflict-free: set_A_matrix,
+	       set_B_matrix,
+	       set_s1_or_s2_row1,
+	       set_state_systolic,
+	       get_result
+Conflicts: set_C_row1, initialise_systolic
+ 
+Method: set_s1_or_s2_row1
+Ready signal: systolic_array_0_0.RDY_set_s1_or_s2 &&
+	      systolic_array_0_1.RDY_set_s1_or_s2 &&
+	      systolic_array_0_2.RDY_set_s1_or_s2 &&
+	      systolic_array_0_3.RDY_set_s1_or_s2
+Conflict-free: set_A_matrix,
+	       set_B_matrix,
+	       set_C_row1,
+	       set_state_systolic,
+	       get_result
+Conflicts: set_s1_or_s2_row1, initialise_systolic
+ 
+Method: initialise_systolic
+Ready signal: systolic_array_0_0.RDY_set_s1_or_s2 &&
+	      systolic_array_0_1.RDY_set_s1_or_s2 &&
+	      systolic_array_0_2.RDY_set_s1_or_s2 &&
+	      systolic_array_0_3.RDY_set_s1_or_s2 &&
+	      systolic_array_1_0.RDY_set_s1_or_s2 &&
+	      systolic_array_1_1.RDY_set_s1_or_s2 &&
+	      systolic_array_1_2.RDY_set_s1_or_s2 &&
+	      systolic_array_1_3.RDY_set_s1_or_s2 &&
+	      systolic_array_2_0.RDY_set_s1_or_s2 &&
+	      systolic_array_2_1.RDY_set_s1_or_s2 &&
+	      systolic_array_2_2.RDY_set_s1_or_s2 &&
+	      systolic_array_2_3.RDY_set_s1_or_s2 &&
+	      systolic_array_3_0.RDY_set_s1_or_s2 &&
+	      systolic_array_3_1.RDY_set_s1_or_s2 &&
+	      systolic_array_3_2.RDY_set_s1_or_s2 &&
+	      systolic_array_3_3.RDY_set_s1_or_s2 &&
+	      systolic_array_0_0.RDY_set_c &&
+	      systolic_array_0_1.RDY_set_c &&
+	      systolic_array_0_2.RDY_set_c &&
+	      systolic_array_0_3.RDY_set_c &&
+	      systolic_array_1_0_RDY_set_c____d72(...) &&
+	      systolic_array_1_1_RDY_set_c__3_AND_systolic_a_ETC___d287(...)
+Conflict-free: set_A_matrix, set_B_matrix, set_state_systolic, get_result
+Conflicts: set_C_row1, set_s1_or_s2_row1, initialise_systolic
+ 
+Method: set_state_systolic
+Ready signal: True
+Conflict-free: set_A_matrix,
+	       set_B_matrix,
+	       set_C_row1,
+	       set_s1_or_s2_row1,
+	       initialise_systolic,
+	       get_result
+Sequenced before (restricted): set_state_systolic
+ 
+Method: get_result
+Ready signal: systolic_array_3_0.RDY_get_result &&
+	      systolic_array_3_1.RDY_get_result &&
+	      systolic_array_3_2.RDY_get_result &&
+	      systolic_array_3_3.RDY_get_result
+Conflict-free: set_A_matrix,
+	       set_B_matrix,
+	       set_C_row1,
+	       set_s1_or_s2_row1,
+	       initialise_systolic,
+	       set_state_systolic,
+	       get_result
+ 
+Rule schedule
+-------------
+Rule: count_up
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: shift_b_row1
+Predicate: systolic_array_0_0.RDY_get_b &&
+	   systolic_array_0_1.RDY_get_b &&
+	   systolic_array_0_2.RDY_get_b &&
+	   systolic_array_0_3.RDY_get_b &&
+	   systolic_array_1_0.RDY_set_b &&
+	   systolic_array_1_1.RDY_set_b &&
+	   systolic_array_1_2.RDY_set_b && systolic_array_1_3.RDY_set_b
+Blocking rules: (none)
+ 
+Rule: shift_b_row2
+Predicate: systolic_array_1_0.RDY_get_b &&
+	   systolic_array_1_1.RDY_get_b &&
+	   systolic_array_1_2.RDY_get_b &&
+	   systolic_array_1_3.RDY_get_b &&
+	   systolic_array_2_0.RDY_set_b &&
+	   systolic_array_2_1.RDY_set_b &&
+	   systolic_array_2_2.RDY_set_b && systolic_array_2_3.RDY_set_b
+Blocking rules: (none)
+ 
+Rule: shift_b_row3
+Predicate: systolic_array_2_0.RDY_get_b &&
+	   systolic_array_2_1.RDY_get_b &&
+	   systolic_array_2_2.RDY_get_b &&
+	   systolic_array_2_3.RDY_get_b &&
+	   systolic_array_3_0.RDY_set_b &&
+	   systolic_array_3_1.RDY_set_b &&
+	   systolic_array_3_2.RDY_set_b && systolic_array_3_3.RDY_set_b
+Blocking rules: (none)
+ 
+Rule: shift_c_row1
+Predicate: systolic_array_0_0.RDY_get_s1_or_s2 &&
+	   systolic_array_0_1.RDY_get_s1_or_s2 &&
+	   systolic_array_0_2.RDY_get_s1_or_s2 &&
+	   systolic_array_0_3.RDY_get_s1_or_s2 &&
+	   systolic_array_0_0.RDY_get_result &&
+	   systolic_array_0_1.RDY_get_result &&
+	   systolic_array_0_2.RDY_get_result &&
+	   systolic_array_0_3.RDY_get_result &&
+	   systolic_array_1_0.RDY_set_s1_or_s2 &&
+	   systolic_array_1_1.RDY_set_s1_or_s2 &&
+	   systolic_array_1_2.RDY_set_s1_or_s2 &&
+	   systolic_array_1_3.RDY_set_s1_or_s2 &&
+	   systolic_array_1_0.RDY_set_c &&
+	   systolic_array_1_1.RDY_set_c &&
+	   systolic_array_1_2.RDY_set_c && systolic_array_1_3.RDY_set_c
+Blocking rules: initialise_systolic
+ 
+Rule: shift_c_row2
+Predicate: systolic_array_1_0.RDY_get_s1_or_s2 &&
+	   systolic_array_1_1.RDY_get_s1_or_s2 &&
+	   systolic_array_1_2.RDY_get_s1_or_s2 &&
+	   systolic_array_1_3.RDY_get_s1_or_s2 &&
+	   systolic_array_1_0.RDY_get_result &&
+	   systolic_array_1_1.RDY_get_result &&
+	   systolic_array_1_2.RDY_get_result &&
+	   systolic_array_1_3.RDY_get_result &&
+	   systolic_array_2_0.RDY_set_s1_or_s2 &&
+	   systolic_array_2_1.RDY_set_s1_or_s2 &&
+	   systolic_array_2_2.RDY_set_s1_or_s2 &&
+	   systolic_array_2_3.RDY_set_s1_or_s2 &&
+	   systolic_array_2_0.RDY_set_c &&
+	   systolic_array_2_1.RDY_set_c &&
+	   systolic_array_2_2.RDY_set_c && systolic_array_2_3.RDY_set_c
+Blocking rules: initialise_systolic
+ 
+Rule: shift_c_row3
+Predicate: systolic_array_2_0.RDY_get_s1_or_s2 &&
+	   systolic_array_2_1.RDY_get_s1_or_s2 &&
+	   systolic_array_2_2.RDY_get_s1_or_s2 &&
+	   systolic_array_2_3.RDY_get_s1_or_s2 &&
+	   systolic_array_2_0.RDY_get_result &&
+	   systolic_array_2_1.RDY_get_result &&
+	   systolic_array_2_2.RDY_get_result &&
+	   systolic_array_2_3.RDY_get_result &&
+	   systolic_array_3_0.RDY_set_s1_or_s2 &&
+	   systolic_array_3_1.RDY_set_s1_or_s2 &&
+	   systolic_array_3_2.RDY_set_s1_or_s2 &&
+	   systolic_array_3_3.RDY_set_s1_or_s2 &&
+	   systolic_array_3_0.RDY_set_c &&
+	   systolic_array_3_1.RDY_set_c &&
+	   systolic_array_3_2.RDY_set_c && systolic_array_3_3.RDY_set_c
+Blocking rules: initialise_systolic
+ 
+Rule: shift_a_column1
+Predicate: systolic_array_0_0.RDY_get_a &&
+	   systolic_array_1_0.RDY_get_a &&
+	   systolic_array_2_0.RDY_get_a &&
+	   systolic_array_3_0.RDY_get_a &&
+	   systolic_array_0_1.RDY_set_a &&
+	   systolic_array_1_1.RDY_set_a &&
+	   systolic_array_2_1.RDY_set_a && systolic_array_3_1.RDY_set_a
+Blocking rules: initialise_systolic
+ 
+Rule: shift_a_column2
+Predicate: systolic_array_0_1.RDY_get_a &&
+	   systolic_array_1_1.RDY_get_a &&
+	   systolic_array_2_1.RDY_get_a &&
+	   systolic_array_3_1.RDY_get_a &&
+	   systolic_array_0_2.RDY_set_a &&
+	   systolic_array_1_2.RDY_set_a &&
+	   systolic_array_2_2.RDY_set_a && systolic_array_3_2.RDY_set_a
+Blocking rules: initialise_systolic
+ 
+Rule: shift_a_column3
+Predicate: systolic_array_0_2.RDY_get_a &&
+	   systolic_array_1_2.RDY_get_a &&
+	   systolic_array_2_2.RDY_get_a &&
+	   systolic_array_3_2.RDY_get_a &&
+	   systolic_array_0_3.RDY_set_a &&
+	   systolic_array_1_3.RDY_set_a &&
+	   systolic_array_2_3.RDY_set_a && systolic_array_3_3.RDY_set_a
+Blocking rules: initialise_systolic
+ 
+Logical execution order: set_A_matrix,
+			 set_B_matrix,
+			 set_C_row1,
+			 set_s1_or_s2_row1,
+			 initialise_systolic,
+			 set_state_systolic,
+			 get_result,
+			 count_up,
+			 shift_b_row1,
+			 shift_b_row2,
+			 shift_b_row3,
+			 shift_c_row1,
+			 shift_c_row2,
+			 shift_c_row3,
+			 shift_a_column1,
+			 shift_a_column2,
+			 shift_a_column3
+
+==========================================

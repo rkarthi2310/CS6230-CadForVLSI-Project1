@@ -1,0 +1,154 @@
+=== Generated schedule for mkMacSystolic ===
+
+Method schedule
+---------------
+Method: set_state
+Ready signal: True
+Conflict-free: set_a,
+	       set_b,
+	       set_c,
+	       set_s1_or_s2,
+	       get_result,
+	       get_a,
+	       get_b,
+	       get_s1_or_s2
+Sequenced before (restricted): set_state
+ 
+Method: set_a
+Ready signal: a_1.i_notFull
+Conflict-free: set_state,
+	       set_b,
+	       set_c,
+	       set_s1_or_s2,
+	       get_result,
+	       get_a,
+	       get_b,
+	       get_s1_or_s2
+Conflicts: set_a
+ 
+Method: set_b
+Ready signal: b_1.i_notFull
+Conflict-free: set_state,
+	       set_a,
+	       set_c,
+	       set_s1_or_s2,
+	       get_result,
+	       get_a,
+	       get_b,
+	       get_s1_or_s2
+Conflicts: set_b
+ 
+Method: set_c
+Ready signal: c_1.i_notFull
+Conflict-free: set_state,
+	       set_a,
+	       set_b,
+	       set_s1_or_s2,
+	       get_result,
+	       get_a,
+	       get_b,
+	       get_s1_or_s2
+Conflicts: set_c
+ 
+Method: set_s1_or_s2
+Ready signal: s1_or_s2_1.i_notFull
+Conflict-free: set_state,
+	       set_a,
+	       set_b,
+	       set_c,
+	       get_result,
+	       get_a,
+	       get_b,
+	       get_s1_or_s2
+Conflicts: set_s1_or_s2
+ 
+Method: get_result
+Ready signal: result.whas
+Conflict-free: set_state,
+	       set_a,
+	       set_b,
+	       set_c,
+	       set_s1_or_s2,
+	       get_result,
+	       get_a,
+	       get_b,
+	       get_s1_or_s2
+ 
+Method: get_a
+Ready signal: a_out.whas
+Conflict-free: set_state,
+	       set_a,
+	       set_b,
+	       set_c,
+	       set_s1_or_s2,
+	       get_result,
+	       get_a,
+	       get_b,
+	       get_s1_or_s2
+ 
+Method: get_b
+Ready signal: b_out.whas
+Conflict-free: set_state,
+	       set_a,
+	       set_b,
+	       set_c,
+	       set_s1_or_s2,
+	       get_result,
+	       get_a,
+	       get_b,
+	       get_s1_or_s2
+ 
+Method: get_s1_or_s2
+Ready signal: s1_or_s2_out.whas
+Conflict-free: set_state,
+	       set_a,
+	       set_b,
+	       set_c,
+	       set_s1_or_s2,
+	       get_result,
+	       get_a,
+	       get_b,
+	       get_s1_or_s2
+ 
+Rule schedule
+-------------
+Rule: count_up
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: perform_mac_stage1
+Predicate: a_1.i_notEmpty &&
+	   c_1.i_notEmpty &&
+	   s1_or_s2_1.i_notEmpty &&
+	   b_1.i_notEmpty &&
+	   mac_intermediate_AB.i_notFull &&
+	   a_2.i_notFull && c_2.i_notFull && s1_or_s2_2.i_notFull &&
+	   (! transfer_b)
+Blocking rules: (none)
+ 
+Rule: perform_mac_stage2
+Predicate: c_2.i_notEmpty &&
+	   mac_intermediate_AB.i_notEmpty &&
+	   s1_or_s2_2.i_notEmpty && a_2.i_notEmpty &&
+	   (! transfer_b)
+Blocking rules: (none)
+ 
+Rule: send_b
+Predicate: b_1.i_notEmpty && transfer_b
+Blocking rules: (none)
+ 
+Logical execution order: set_a,
+			 set_b,
+			 set_c,
+			 set_s1_or_s2,
+			 count_up,
+			 perform_mac_stage1,
+			 perform_mac_stage2,
+			 get_result,
+			 get_a,
+			 get_s1_or_s2,
+			 send_b,
+			 set_state,
+			 get_b
+
+=============================================

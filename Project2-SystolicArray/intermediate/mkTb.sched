@@ -1,0 +1,11 @@
+=== Generated schedule for mkTb ===
+
+Rule schedule
+-------------
+Rule: test
+Predicate: True
+Blocking rules: (none)
+ 
+Logical execution order: test
+
+====================================
