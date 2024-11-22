@@ -5,11 +5,11 @@ PWD=$(shell pwd)
 
 export PYTHONPATH:=$(PWD)/verification:$(PYTHONPATH)
 
-VERILOG_SOURCES=$(PWD)/verilog/mkSystolic.v /tools/inst/lib/Verilog/FIFO2.v
+VERILOG_SOURCES=$(PWD)/verilog/mkTopSystolic.v /tools/inst/lib/Verilog/FIFO2.v
 
 EXTRA_ARGS = --trace --trace-structs -DBSV_NO_INITIAL_BLOCKS
 
-TOPLEVEL = mkSystolic
+TOPLEVEL = mkTopSystolic
 MODULE   := test_systolic
 
 include $(shell cocotb-config --makefiles)/Makefile.sim

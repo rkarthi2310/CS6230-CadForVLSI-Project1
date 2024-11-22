@@ -215,6 +215,71 @@ def mac_int8(a, b, c):
 
     return [mac, []]
 
+def multiply_4x4_matrices_bf16(matrix1, matrix2):
+    """
+    Multiply two 4x4 matrices.
+    
+    Args:
+        matrix1: List of 4 lists, each containing 4 numbers. 
+                 Each  number is a list of 1 element.
+        matrix2: List of 4 lists, each containing 4 numbers.
+                 Each  number is a list of 1 element.
+        
+    Returns:
+        result: List of 4 lists, each containing 4 numbers
+    """
+    # Initialize result matrix with zeros
+    result = [[['0'*32] for _ in range(4)] for _ in range(4)]
+    
+    # Perform matrix multiplication
+    for i in range(4):
+        for j in range(4):
+            for k in range(4):
+                temp1 = multiply_bfloat16(matrix1[i][k], matrix2[k][j])
+                for i in range(len(temp1)):
+                    temp1[i] = (temp1[i] + 16*'0')
+                temp1_exponent = [ab[1:9] for ab in temp1]
+                temp2 = add_fp32(temp1, result[i][j])
+                if(temp2[0][1:9] in coverage_exponent_exception or 
+                   temp1_exponent in coverage_exponent_exception):
+                    return [result, 0]
+                result[i][j] = temp2
+                
+    return [result, 1]
+
+def multiply_4x4_matrices_int8(matrix1, matrix2):
+    """
+    Multiply two 4x4 matrices.
+    
+    Args:
+        matrix1: List of 4 lists, each containing 4 numbers. 
+                 Each  number is a list of 1 element.
+        matrix2: List of 4 lists, each containing 4 numbers.
+                 Each  number is a list of 1 element.
+        
+    Returns:
+        result: List of 4 lists, each containing 4 numbers
+    """
+    # Initialize result matrix with zeros
+    result = [[['0'*32] for _ in range(4)] for _ in range(4)]
+    
+    # Perform matrix multiplication
+    for i in range(4):
+        for j in range(4):
+            for k in range(4):
+                temp_a = [int(element, 2) for element in matrix1[i][k]]
+                temp_b = [int(element, 2) for element in matrix2[k][j]]
+
+                temp_a_np = np.array(temp_a, dtype=np.int8)
+                temp_b_np = np.array(temp_b, dtype=np.int8)
+                temp_c_np = np.array(result[i][j], dtype=np.int32)
+                temp1 = np.array(temp_a_np, dtype=np.int16) * np.array(temp_b_np, dtype=np.int16)
+                temp2 = temp1 + temp_c_np
+                temp2 = [int_to_twos_complement(element, 32) for element in temp2]
+                result[i][j] = temp2
+                
+    return [result, 1]
+
 #*************************************************************************
 # END OF FILE
 #*************************************************************************
